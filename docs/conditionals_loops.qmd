@@ -8,12 +8,53 @@ editor: visual
 
 Task 1
 ```{r}
-pm2_5 <- 48
+pm2_5 <- 170
 
 if(pm2_5<100){
   print("Low to moderate risk")
-}else if (100 <= pm2_5 < 150){
+}else if (100 <= pm2_5 & pm2_5 < 150){
   print("Unhealthy for sensitive groups")
+}else if (pm2_5 >= 150) {
+  print("Health risk present")
+}
+```
+
+Task 2
+```{r}
+species <- "blue whale shark"
+
+if(stringr::str_detect(species, pattern = "whale")) {
+  print("You found a whale!")
+}
+```
+
+Task 3
+```{r}
+base_burrito <- 6.50
+main_ingredient <-  "chicken"
+
+switch(main_ingredient,
+       "veggie" = print(base_burrito),
+       "chicken" = print(base_burrito + 3),
+       "steak" = print(base_burrito + 3.25))
+
+```
+
+## For Loops
+
+Task 4
+```{r}
+fish <- c(8,10,12,23)
+
+for(i in 1:length(fish)){
+  fish_prop <- fish[i]/sum(fish)
+  print(fish_prop)
+}
+```
+Task 5
+```{r}
+for(i in 1:length(month.name)){
+  print(paste(month.name[i],"is month", i))
 }
 ```
 
