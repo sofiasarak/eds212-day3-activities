@@ -1,0 +1,44 @@
+---
+title: "Real data (Pt 3)"
+author: "Sofia Sarak"
+format: html
+editor: visual
+execute: 
+  warning: false
+  messages: false
+---
+
+Loading packages
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+```
+Loading in data
+```{r}
+toolik_biochem <- read_csv(here::here("data", "2011_Kling_Akchem.csv"), na = c(".", "NA")) |>
+  clean_names() 
+```
+Subset of data only from "Toolik Inlet" site
+```{r}
+inlet_biochem <- toolik_biochem[toolik_biochem$site=="Toolik Inlet",] |> dplyr::select(p_h, doc_u_m, tdn_u_m)
+head(inlet_biochem)
+```
+
+Finding mean value of each column in 3 different ways!
+```{r}
+#for loop
+for(i in 1:ncol(inlet_biochem)){
+  col_mean <- mean(inlet_biochem[[i]], na.rm=TRUE)
+  print(col_mean)
+}
+
+#apply
+apply(inlet_biochem, MARGIN = 2, FUN = mean, na.rm=TRUE)
+
+#across
+inlet_mean <- inlet_biochem |>
+  mutate(across(c(p_h, doc_u_m, tdn_u_m), mean, na.rm=TRUE)) #returns list of the same mean eek
+inlet_mean[1,]
+```
+
