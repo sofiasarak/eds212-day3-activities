@@ -1,0 +1,19 @@
+---
+title: "Conditional Statements & For Loops (Pt 2)"
+author: "Sofia Sarak"
+format: html
+editor: visual
+---
+## Conditional Statements
+
+Task 1
+```{r}
+pm2_5 <- 48
+
+if(pm2_5<100){
+  print("Low to moderate risk")
+}else if (100 <= pm2_5 < 150){
+  print("Unhealthy for sensitive groups")
+}
+```
+
